@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Navbar from './components/layout/Navbar';
-import Landing from './components/layout/Landing';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-import Footer from './components/layout/Footer';
+import Navbar from "./components/layout/Navbar";
+import Landing from "./components/layout/Landing";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import Footer from "./components/layout/Footer";
 
-import './App.css';
+import "./App.css";
 
 class App extends Component {
   render() {
@@ -23,7 +23,7 @@ class App extends Component {
           <Footer />
         </div>
       </Router>
-    )
+    );
   }
 }
 
