@@ -17,7 +17,34 @@ class PostForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.errors) {
+      this.setState({ errors: newProps.errors });
+    }
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const { user } = this.props.auth;
+
+    const newPost = {
+      text: this.state.text,
+      name: user.name,
+      avatar: user.avatar
+    };
+
+    this.props.addPost(newPost);
+    this.setState({ text: "" });
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
+    const { errors } = this.state;
+
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
@@ -44,6 +71,15 @@ class PostForm extends Component {
   }
 }
 
-const mapStateToProps = {};
+PostForm.propTypes = {
+  addPost: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
 
-export default connect(null, {})(PostForm);
+const mapStateToProps = state => ({
+  errors: state.errors,
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { addPost })(PostForm);
